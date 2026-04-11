@@ -1,0 +1,12 @@
+<Page x:Class="WpfSignalApp.Page2"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Background="#f0f0f0" Title="Signal Processing">
+
+    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="300">
+        <TextBlock Text="Обробка сигналу" FontSize="18" FontWeight="Bold"
+                   HorizontalAlignment="Center" Margin="0,0,0,20"/>
+        <ProgressBar x:Name="ProgBar" Height="25" Minimum="0" Maximum="100" Margin="0,0,0,15"/>
+        <Button x:Name="BtnProcess" Content="Start Processing" Padding="8" Click="BtnProcess_Click"/>
+    </StackPanel>
+</Page>

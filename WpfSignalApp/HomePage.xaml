@@ -1,0 +1,17 @@
+<Page x:Class="WpfSignalApp.HomePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Background="#0d0d1a" Title="Головна">
+
+    <Grid>
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Image Source="/radiotelescope.png" Width="160" Height="160" Stretch="Uniform" Margin="0,0,0,20"/>
+            <TextBlock Text="Закарпатська Радіютелескопна Програма"
+                       FontSize="22" FontWeight="Bold" Foreground="White"
+                       HorizontalAlignment="Center" Margin="0,0,0,8"/>
+            <TextBlock Text="Оберіть розділ у навігаційній панелі зверху"
+                       FontSize="13" Foreground="#d6d6d6"
+                       HorizontalAlignment="Center"/>
+        </StackPanel>
+    </Grid>
+</Page>
