@@ -24,12 +24,12 @@
                 </StackPanel>
 
                 <!-- Кнопки навігації -->
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
-                    <Button Content="🏠 Головна"        Width="110" Margin="4,0" Padding="6,5" Click="BtnHome_Click"    Tag="Home"/>
-                    <Button Content="📡 Зловити сигнал" Width="140" Margin="4,0" Padding="6,5" Click="BtnPage1_Click"   Tag="Page1"/>
-                    <Button Content="⚙ Обробка"         Width="110" Margin="4,0" Padding="6,5" Click="BtnPage2_Click"   Tag="Page2"/>
-                    <Button Content="📊 Результат"      Width="110" Margin="4,0" Padding="6,5" Click="BtnPage3_Click"   Tag="Page3"/>
-                    <Button Content="📋 Всі сигнали"    Width="120" Margin="4,0" Padding="6,5" Click="BtnPage4_Click"   Tag="Page4"/>
+                <StackPanel Orientation="Horizontal" Width="594">
+                    <Button Content="🏠 Головна"        Width="85" Margin="4,0" Padding="6,5" Click="BtnHome_Click"    Tag="Home"/>
+                    <Button Content="📡 Зловити&#xD;&#xA;        сигнал" Width="85" Margin="4,0" Padding="6,5" Click="BtnPage1_Click"   Tag="Page1" Height="59"/>
+                    <Button Content="⚙ Обробка"         Width="85" Margin="4,0" Padding="6,5" Click="BtnPage2_Click"   Tag="Page2"/>
+                    <Button Content="📊 Результат"      Width="85" Margin="4,0" Padding="6,5" Click="BtnPage3_Click"   Tag="Page3"/>
+                    <Button Content="📋 Всі сигнали"    Width="100" Margin="4,0" Padding="6,5" Click="BtnPage4_Click"   Tag="Page4"/>
                 </StackPanel>
             </DockPanel>
         </Border>
