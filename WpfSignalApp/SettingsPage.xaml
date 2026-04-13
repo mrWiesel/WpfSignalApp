@@ -1,0 +1,82 @@
+<Page x:Class="WpfSignalApp.SettingsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="Налаштування"
+      Background="{DynamicResource ThemePageBg}"
+      FontFamily="Segoe UI">
+
+    <Grid>
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="360">
+
+            <TextBlock Text="⚙ Налаштування"
+                       FontSize="24" FontWeight="Bold"
+                       Foreground="{DynamicResource ThemeText}"
+                       HorizontalAlignment="Center"
+                       Margin="0,0,0,32"/>
+
+            <!-- Theme card -->
+            <Border Background="{DynamicResource ThemeCard}"
+                    BorderBrush="{DynamicResource ThemeBorder}"
+                    BorderThickness="1.5" CornerRadius="10"
+                    Padding="20,18" Margin="0,0,0,16">
+                <StackPanel>
+                    <TextBlock Text="Тема інтерфейсу"
+                               FontSize="14" FontWeight="SemiBold"
+                               Foreground="{DynamicResource ThemeText}"
+                               Margin="0,0,0,14"/>
+
+                    <!-- Toggle row -->
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Button x:Name="BtnDark"
+                                Grid.Column="0"
+                                Content="🌙  Темна"
+                                Height="42" Margin="0,0,6,0"
+                                FontSize="13"
+                                Click="BtnDark_Click"/>
+
+                        <Button x:Name="BtnLight"
+                                Grid.Column="1"
+                                Content="☀  Світла"
+                                Height="42" Margin="6,0,0,0"
+                                FontSize="13"
+                                Click="BtnLight_Click"/>
+                    </Grid>
+
+                    <TextBlock x:Name="TxtCurrentTheme"
+                               Text="Поточна тема: Темна"
+                               FontSize="11"
+                               Foreground="{DynamicResource ThemeSubText}"
+                               HorizontalAlignment="Center"
+                               Margin="0,12,0,0"/>
+                </StackPanel>
+            </Border>
+
+            <!-- Info card -->
+            <Border Background="{DynamicResource ThemeCard}"
+                    BorderBrush="{DynamicResource ThemeBorder}"
+                    BorderThickness="1.5" CornerRadius="10"
+                    Padding="20,18">
+                <StackPanel>
+                    <TextBlock Text="Про програму"
+                               FontSize="14" FontWeight="SemiBold"
+                               Foreground="{DynamicResource ThemeText}"
+                               Margin="0,0,0,8"/>
+                    <TextBlock Text="Закарпатська Радіютелескопна Програма"
+                               FontSize="12"
+                               Foreground="{DynamicResource ThemeSubText}"
+                               TextWrapping="Wrap"/>
+                    <TextBlock Text="Версія 1.0.0"
+                               FontSize="11"
+                               Foreground="{DynamicResource ThemeSubText}"
+                               Margin="0,4,0,0"/>
+                </StackPanel>
+            </Border>
+
+        </StackPanel>
+    </Grid>
+</Page>
