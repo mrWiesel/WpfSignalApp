@@ -1,12 +1,40 @@
 <Page x:Class="WpfSignalApp.Page2"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      Background="#f0f0f0" Title="Signal Processing">
+      Background="{DynamicResource ThemePageBg}"
+      FontFamily="Segoe UI"
+      Title="Signal Processing">
 
-    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="300">
-        <TextBlock Text="Обробка сигналу" FontSize="18" FontWeight="Bold"
-                   HorizontalAlignment="Center" Margin="0,0,0,20"/>
-        <ProgressBar x:Name="ProgBar" Height="25" Minimum="0" Maximum="100" Margin="0,0,0,15"/>
-        <Button x:Name="BtnProcess" Content="Start Processing" Padding="8" Click="BtnProcess_Click"/>
+    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="360">
+
+        <Border Background="{DynamicResource ThemeCard}"
+                BorderBrush="{DynamicResource ThemeBorder}"
+                BorderThickness="1.5" CornerRadius="10"
+                Padding="28,24">
+            <StackPanel>
+                <TextBlock Text="⚙ Обробка сигналу"
+                           FontSize="20" FontWeight="Bold"
+                           Foreground="{DynamicResource ThemeText}"
+                           HorizontalAlignment="Center" Margin="0,0,0,24"/>
+
+                <TextBlock Text="Прогрес обробки"
+                           FontSize="12"
+                           Foreground="{DynamicResource ThemeSubText}"
+                           Margin="0,0,0,8"/>
+
+                <ProgressBar x:Name="ProgBar" Height="22"
+                             Minimum="0" Maximum="100"
+                             Margin="0,0,0,20"
+                             Foreground="DeepSkyBlue"/>
+
+                <Button x:Name="BtnProcess"
+                        Content="▶  Start Processing"
+                        Height="40" FontSize="14"
+                        Background="{DynamicResource ThemeBtnBg}"
+                        Foreground="{DynamicResource ThemeBtnFg}"
+                        Click="BtnProcess_Click"/>
+            </StackPanel>
+        </Border>
+
     </StackPanel>
 </Page>

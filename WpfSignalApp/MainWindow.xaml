@@ -1,19 +1,23 @@
 <Window x:Class="WpfSignalApp.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Закарпатська Радіютелескопна Програма"
+        Title="Mine Radiotelescope App"
         Height="550" Width="860"
         WindowStartupLocation="CenterScreen"
         Background="{DynamicResource ThemeBg}">
 
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="233*"/>
+            <ColumnDefinition Width="627*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <!-- Навігаційна панель -->
-        <Border Grid.Row="0" Background="{DynamicResource ThemeNavBg}" Padding="10,8">
+        <Border Grid.Row="0" Background="{DynamicResource ThemeNavBg}" Padding="10,8" Grid.ColumnSpan="2">
             <DockPanel>
                 <!-- Логотип -->
                 <StackPanel DockPanel.Dock="Left" Orientation="Horizontal"
@@ -21,9 +25,9 @@
                     <Image Source="radiotelescope.png" Width="36" Height="36"
                            Margin="0,0,8,0" Stretch="Uniform"/>
                     <StackPanel VerticalAlignment="Center">
-                        <TextBlock Text="ЗРтП" FontSize="18" FontWeight="Bold"
+                        <TextBlock Text="MRtA" FontSize="18" FontWeight="Bold"
                                    Foreground="{DynamicResource ThemeText}"/>
-                        <TextBlock Text="Закарпатська Радіютелескопна Програма"
+                        <TextBlock Text="Mine Radiotelescope App"
                                    FontSize="9" Foreground="{DynamicResource ThemeSubText}"/>
                     </StackPanel>
                 </StackPanel>
@@ -40,24 +44,24 @@
 
                 <!-- Кнопки навігації -->
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                    <Button Content="🏠 Головна"
-                            Width="85"  Margin="4,0" Padding="6,5"
+                    <Button Content="🏠 Main"
+                            Width="92"  Margin="4,0" Padding="6,5"
                             Background="{DynamicResource ThemeBtnBg}"
                             Foreground="{DynamicResource ThemeBtnFg}"
                             Click="BtnHome_Click"/>
-                    <Button Content="📡 Зловити&#xA;сигнал"
-                            Width="85"  Margin="4,0" Padding="6,5"
+                    <Button Content="📡 Catch&#xA;signal"
+                            Width="92"  Margin="4,0" Padding="6,5"
                             Height="46"
                             Background="{DynamicResource ThemeBtnBg}"
                             Foreground="{DynamicResource ThemeBtnFg}"
                             Click="BtnPage1_Click"/>
-                    <Button Content="⚙ Обробка"
-                            Width="85"  Margin="4,0" Padding="6,5"
+                    <Button Content="⚙ Processing"
+                            Width="92"  Margin="4,0" Padding="6,5"
                             Background="{DynamicResource ThemeBtnBg}"
                             Foreground="{DynamicResource ThemeBtnFg}"
                             Click="BtnPage2_Click"/>
-                    <Button Content="📊 Результат"
-                            Width="90"  Margin="4,0" Padding="6,5"
+                    <Button Content="📊 Results"
+                            Width="92"  Margin="4,0" Padding="6,5"
                             Background="{DynamicResource ThemeBtnBg}"
                             Foreground="{DynamicResource ThemeBtnFg}"
                             Click="BtnPage3_Click"/>
@@ -68,6 +72,6 @@
         <!-- Фрейм -->
         <Frame x:Name="MainFrame"
                Grid.Row="1"
-               NavigationUIVisibility="Hidden"/>
+               NavigationUIVisibility="Hidden" Grid.ColumnSpan="2"/>
     </Grid>
 </Window>

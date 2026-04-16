@@ -52,8 +52,8 @@ namespace WpfSignalApp
                 res["ThemeSubText"]    = new SolidColorBrush(Color.FromRgb(80,  80,  80));
                 res["ThemeCard"]       = new SolidColorBrush(Color.FromRgb(220, 225, 240));
                 res["ThemeBorder"]     = new SolidColorBrush(Color.FromRgb(130, 130, 160));
-                res["ThemeBtnBg"]      = new SolidColorBrush(Color.FromRgb(180, 190, 215));
-                res["ThemeBtnFg"]      = new SolidColorBrush(Colors.Black);
+                res["ThemeBtnBg"]      = new SolidColorBrush(Color.FromRgb(120, 130, 155));
+                res["ThemeBtnFg"]      = new SolidColorBrush(Colors.White);
                 res["ThemePageBg"]     = new SolidColorBrush(Color.FromRgb(245, 245, 255));
             }
 

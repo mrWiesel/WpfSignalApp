@@ -22,7 +22,7 @@ namespace WpfSignalApp
             InitializeComponent();
         }
 
-        // ── INITIALIZE ──────────────────────────────────────────────────────────
+        //INITIALIZE
         private void BtnInit_Click(object sender, RoutedEventArgs e)
         {
             var rng = new Random();
@@ -44,7 +44,7 @@ namespace WpfSignalApp
             BtnCatch.IsEnabled         = false;
         }
 
-        // ── POLARITY ────────────────────────────────────────────────────────────
+        //POLARITY
         private void BtnPolPlus100_Click(object sender, RoutedEventArgs e)  => AdjustPol(+100);
         private void BtnPolPlus10_Click(object sender,  RoutedEventArgs e)  => AdjustPol(+10);
         private void BtnPolPlus1_Click(object sender,   RoutedEventArgs e)  => AdjustPol(+1);
@@ -59,7 +59,7 @@ namespace WpfSignalApp
             UpdateDisplays();
         }
 
-        // ── FREQUENCY ───────────────────────────────────────────────────────────
+        //FREQUENCY
         private void BtnFreqPlus100_Click(object sender, RoutedEventArgs e)  => AdjustFreq(+100);
         private void BtnFreqPlus10_Click(object sender,  RoutedEventArgs e)  => AdjustFreq(+10);
         private void BtnFreqPlus1_Click(object sender,   RoutedEventArgs e)  => AdjustFreq(+1);
@@ -74,7 +74,7 @@ namespace WpfSignalApp
             UpdateDisplays();
         }
 
-        // ── WRAP helper ─────────────────────────────────────────────────────────
+        //WRAP helper
         private static int Wrap(int value, int min, int max)
         {
             int range = max - min + 1;
@@ -82,7 +82,7 @@ namespace WpfSignalApp
             return value;
         }
 
-        // ── UPDATE DISPLAYS ─────────────────────────────────────────────────────
+        //UPDATE DISPLAYS
         private void UpdateDisplays()
         {
             bool polClose  = Math.Abs(_targetPolarity  - _currentPol)  <= Threshold;

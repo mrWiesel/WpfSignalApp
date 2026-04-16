@@ -1,6 +1,7 @@
 using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace WpfSignalApp
@@ -12,17 +13,30 @@ namespace WpfSignalApp
         public Page3()
         {
             InitializeComponent();
-            Loaded += (_, _) => DrawSignal();
+            Loaded += (_, _) =>
+            {
+                DrawSignal();
+                UpdateWaveColor();
+            };
+            ThemeManager.ThemeChanged += UpdateWaveColor;
+            Unloaded += (_, _) => ThemeManager.ThemeChanged -= UpdateWaveColor;
+        }
+
+        private void UpdateWaveColor()
+        {
+            waveLine.Stroke = ThemeManager.IsDark
+                ? Brushes.Lime
+                : Brushes.Purple;
         }
 
         private void DrawSignal()
         {
-            // --- Зображення ---
+            //Зображення
             try
             {
                 int imageNumber = _random.Next(1, 11);
                 string baseDir  = AppDomain.CurrentDomain.BaseDirectory;
-                string imagePath = System.IO.Path.Combine(baseDir, "Images", $"s{imageNumber}.jpg");
+                string imagePath = System.IO.Path.Combine(baseDir, "Images", $"s{imageNumber}.png");
 
                 if (System.IO.File.Exists(imagePath))
                 {
@@ -45,7 +59,7 @@ namespace WpfSignalApp
                                 MessageBoxButton.OK, MessageBoxImage.Warning);
             }
 
-            // --- Хвиля ---
+            //Синусоїда
             try
             {
                 waveLine.Points.Clear();
@@ -54,15 +68,15 @@ namespace WpfSignalApp
                 {
                     case 0:
                         for (int x = 0; x < 800; x++)
-                            waveLine.Points.Add(new Point(x, 50 + 50 * Math.Sin(x * 0.05)));
+                            waveLine.Points.Add(new Point(x, 120 + 50 * Math.Sin(x * 0.05)));
                         break;
                     case 1:
                         for (int x = 0; x < 800; x++)
-                            waveLine.Points.Add(new Point(x, 50 + 50 * Math.Cos(x * 0.05)));
+                            waveLine.Points.Add(new Point(x, 120 + 50 * Math.Cos(x * 0.05)));
                         break;
                     case 2:
                         for (int x = 0; x < 800; x++)
-                            waveLine.Points.Add(new Point(x, 50 + 50 * Math.Sin(x * 0.05) * Math.Cos(x * 0.03)));
+                            waveLine.Points.Add(new Point(x, 120 + 50 * Math.Sin(x * 0.05) * Math.Cos(x * 0.03)));
                         break;
                 }
             }
