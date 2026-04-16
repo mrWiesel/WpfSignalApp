@@ -21,7 +21,11 @@
                 Background="{DynamicResource ThemeCard}"
                 BorderBrush="{DynamicResource ThemeBorder}"
                 BorderThickness="1.5" CornerRadius="8">
-            <ListBox x:Name="SignalList"
+
+            <!-- ✅ ItemsSource через Binding — SignalList.ItemsSource = ... більше не потрібен -->
+            <!-- ✅ DisplayMemberPath прив'язується до властивості DisplayText моделі SignalData -->
+            <ListBox ItemsSource="{Binding Signals}"
+                     DisplayMemberPath="DisplayText"
                      Background="Transparent"
                      BorderThickness="0"
                      Foreground="{DynamicResource ThemeText}"

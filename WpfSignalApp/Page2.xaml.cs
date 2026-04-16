@@ -1,29 +1,23 @@
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using WpfSignalApp.ViewModels;
 
 namespace WpfSignalApp
 {
+    /// <summary>
+    /// Code-behind для Page2 — лише DataContext і виклик async методу.
+    /// </summary>
     public partial class Page2 : Page
     {
+        private Page2ViewModel _vm = new Page2ViewModel();
+
         public Page2()
         {
             InitializeComponent();
+            DataContext = _vm;  // ✅ DataContext встановлено
         }
 
         private async void BtnProcess_Click(object sender, RoutedEventArgs e)
-        {
-            BtnProcess.IsEnabled = false;
-            ProgBar.Value = 0;
-
-            for (int i = 1; i <= 100; i++)
-            {
-                ProgBar.Value = i;
-                await Task.Delay(30);
-            }
-
-            MessageBox.Show("Signal processed successfully!");
-            BtnProcess.IsEnabled = true;
-        }
+            => await _vm.ProcessAsync();
     }
 }

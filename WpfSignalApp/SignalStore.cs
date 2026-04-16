@@ -1,26 +1,18 @@
 using System;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace WpfSignalApp
 {
     /// <summary>
-    /// Модель одного сигналу.
-    /// </summary>
-    public class SignalData
-    {
-        public int Polarity  { get; set; }
-        public int Frequency { get; set; }
-
-        public override string ToString() =>
-            $"Polarity: {Polarity}.00 deg | Frequency: {Frequency}.00 MHz";
-    }
-
-    /// <summary>
-    /// Глобальне сховище сигналів — доступне з усіх сторінок.
+    /// Глобальне сховище сигналів.
+    /// ObservableCollection автоматично нотифікує ListBox при додаванні/видаленні елементів.
     /// </summary>
     public static class SignalStore
     {
-        public static List<SignalData> Signals { get; } = new List<SignalData>();
+        /// <summary>
+        /// ObservableCollection замість List — ListBox оновлюється автоматично через Binding.
+        /// </summary>
+        public static ObservableCollection<SignalData> Signals { get; } = new ObservableCollection<SignalData>();
 
         private static readonly Random _rnd = new Random();
 

@@ -35,7 +35,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <!--Polarity-->
+        <!-- ═══ Polarity ═══ -->
         <Border Grid.Row="0" Grid.Column="0"
                 Background="{DynamicResource ThemeCard}"
                 BorderBrush="{DynamicResource ThemeBorder}" BorderThickness="2" Margin="2"
@@ -65,8 +65,9 @@
                     <TextBlock Text="Polarity filter:"
                                FontSize="16" FontWeight="Bold"
                                Foreground="{DynamicResource ThemeText}" Margin="0,0,0,8"/>
-                    <TextBlock x:Name="TxtPolTarget"  Text="Target:  --- deg" Foreground="{DynamicResource ThemeText}"/>
-                    <TextBlock x:Name="TxtPolCurrent" Text="Current: 0 deg"   Foreground="{DynamicResource ThemeText}"/>
+                    <!-- ✅ Binding замість x:Name + ручного .Text = ... -->
+                    <TextBlock Text="{Binding PolTargetText}"  Foreground="{DynamicResource ThemeText}"/>
+                    <TextBlock Text="{Binding PolCurrentText}" Foreground="{Binding PolCurrentColor}"/>
                 </StackPanel>
             </StackPanel>
         </Border>
@@ -101,8 +102,9 @@
                     <TextBlock Text="Frequency filter:"
                                FontSize="16" FontWeight="Bold"
                                Foreground="{DynamicResource ThemeText}" Margin="0,0,0,8"/>
-                    <TextBlock x:Name="TxtFreqTarget"  Text="Target:  --- MHz" Foreground="{DynamicResource ThemeText}"/>
-                    <TextBlock x:Name="TxtFreqCurrent" Text="Current: 0 MHz"   Foreground="{DynamicResource ThemeText}"/>
+                    <!-- ✅ Binding -->
+                    <TextBlock Text="{Binding FreqTargetText}"  Foreground="{DynamicResource ThemeText}"/>
+                    <TextBlock Text="{Binding FreqCurrentText}" Foreground="{Binding FreqCurrentColor}"/>
                 </StackPanel>
             </StackPanel>
         </Border>
@@ -112,7 +114,9 @@
                 Background="{DynamicResource ThemeCard}"
                 BorderBrush="{DynamicResource ThemeBorder}" BorderThickness="2" Margin="2"
                 CornerRadius="6">
-            <TextBlock x:Name="TxtSignalStatus" Text="NO SIGNAL" Foreground="Red"
+            <!-- ✅ Text і Foreground через Binding -->
+            <TextBlock Text="{Binding SignalStatus}"
+                       Foreground="{Binding SignalStatusColor}"
                        FontSize="34" FontWeight="Bold"
                        HorizontalAlignment="Center" VerticalAlignment="Center"/>
         </Border>
@@ -123,11 +127,12 @@
                 BorderBrush="{DynamicResource ThemeBorder}" BorderThickness="2" Margin="2"
                 CornerRadius="6">
             <StackPanel Margin="10" VerticalAlignment="Center">
-                <TextBlock Text="Detector status: Active" Foreground="{DynamicResource ThemeText}"/>
-                <TextBlock x:Name="TxtObject"  Text="Object: none"       Foreground="{DynamicResource ThemeText}"/>
-                <TextBlock x:Name="TxtQuality" Text="Signal quality: 0%" Foreground="{DynamicResource ThemeText}"/>
-                <TextBlock Text="Efficiency: 0.000 B\s"       Foreground="{DynamicResource ThemeText}"/>
-                <TextBlock Text="Energy consumption: 100.00%" Foreground="{DynamicResource ThemeText}"/>
+                <TextBlock Text="Detector status: Active" Foreground="LimeGreen"/>
+                <!-- ✅ Binding -->
+                <TextBlock Text="{Binding ObjectText}"  Foreground="{DynamicResource ThemeText}"/>
+                <TextBlock Text="{Binding QualityText}" Foreground="{DynamicResource ThemeText}"/>
+                <TextBlock Text="Efficiency: 0.000 B\s"       Foreground="Yellow"/>
+                <TextBlock Text="Energy consumption: 100.00%" Foreground="DeepSkyBlue"/>
             </StackPanel>
         </Border>
 
@@ -139,11 +144,11 @@
                     Background="{DynamicResource ThemeBtnBg}"
                     Foreground="{DynamicResource ThemeBtnFg}"
                     Click="BtnInit_Click"/>
-            <Button x:Name="BtnCatch"
-                    Content="CATCH SIGNAL"
+            <!-- ✅ IsEnabled через Binding замість BtnCatch.IsEnabled = false -->
+            <Button Content="CATCH SIGNAL"
                     Width="180" Height="34" Margin="5"
-                    Foreground="Black"
-                    FontWeight="Bold" IsEnabled="False"
+                    Foreground="Black" FontWeight="Bold"
+                    IsEnabled="{Binding CatchEnabled}"
                     Click="BtnCatch_Click"/>
         </StackPanel>
     </Grid>

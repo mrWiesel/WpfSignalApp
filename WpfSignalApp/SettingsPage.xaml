@@ -25,30 +25,32 @@
                                Foreground="{DynamicResource ThemeText}"
                                Margin="0,0,0,14"/>
 
-                    <!-- Toggle row -->
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
 
-                        <Button x:Name="BtnDark"
-                                Grid.Column="0"
+                        <!-- ✅ Background через Binding — BtnDark.Background = ... більше не потрібен -->
+                        <Button Grid.Column="0"
                                 Content="🌙  Темна"
                                 Height="42" Margin="0,0,6,0"
                                 FontSize="13"
+                                Background="{Binding DarkBtnBackground}"
+                                Foreground="{DynamicResource ThemeBtnFg}"
                                 Click="BtnDark_Click"/>
 
-                        <Button x:Name="BtnLight"
-                                Grid.Column="1"
+                        <Button Grid.Column="1"
                                 Content="☀  Світла"
                                 Height="42" Margin="6,0,0,0"
                                 FontSize="13"
+                                Background="{Binding LightBtnBackground}"
+                                Foreground="{DynamicResource ThemeBtnFg}"
                                 Click="BtnLight_Click"/>
                     </Grid>
 
-                    <TextBlock x:Name="TxtCurrentTheme"
-                               Text="Поточна тема: Темна"
+                    <!-- ✅ Text через Binding -->
+                    <TextBlock Text="{Binding CurrentThemeText}"
                                FontSize="11"
                                Foreground="{DynamicResource ThemeSubText}"
                                HorizontalAlignment="Center"
@@ -66,14 +68,14 @@
                                FontSize="14" FontWeight="SemiBold"
                                Foreground="{DynamicResource ThemeText}"
                                Margin="0,0,0,8"/>
-                    <TextBlock Text="Закарпатська Радіютелескопна Програма"
+                    <TextBlock Text="Mine Radiotelescope app"
                                FontSize="12"
                                Foreground="{DynamicResource ThemeSubText}"
                                TextWrapping="Wrap"/>
-                    <TextBlock Text="Версія 1.0.10 BETA"
+                    <TextBlock
                                FontSize="11"
                                Foreground="{DynamicResource ThemeSubText}"
-                               Margin="0,4,0,0"/>
+                               Margin="0,4,0,0"><Run Text="Версія 1."/><Run Text="1"/><Run Text="0"/><Run Language="uk-ua" Text=" "/><Run Text="BETA"/></TextBlock>
                 </StackPanel>
             </Border>
 
