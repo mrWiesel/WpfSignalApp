@@ -70,7 +70,7 @@
                                FontSize="12"
                                Foreground="{DynamicResource ThemeSubText}"
                                TextWrapping="Wrap"/>
-                    <TextBlock Text="Версія 1.0.0 BETA"
+                    <TextBlock Text="Версія 1.0.10 BETA"
                                FontSize="11"
                                Foreground="{DynamicResource ThemeSubText}"
                                Margin="0,4,0,0"/>

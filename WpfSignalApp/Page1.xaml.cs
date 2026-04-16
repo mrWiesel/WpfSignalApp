@@ -40,7 +40,7 @@ namespace WpfSignalApp
 
             TxtSignalStatus.Text       = "SCANNING...";
             TxtSignalStatus.Foreground = Brushes.Yellow;
-            TxtObject.Text             = "Object: Unknown Anomaly";
+            TxtObject.Text             = "Object: Unknown";
             BtnCatch.IsEnabled         = false;
         }
 

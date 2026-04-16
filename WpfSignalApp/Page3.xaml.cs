@@ -64,7 +64,7 @@ namespace WpfSignalApp
             {
                 waveLine.Points.Clear();
 
-                switch (_random.Next(3))
+                switch (_random.Next(4))
                 {
                     case 0:
                         for (int x = 0; x < 800; x++)
@@ -77,6 +77,10 @@ namespace WpfSignalApp
                     case 2:
                         for (int x = 0; x < 800; x++)
                             waveLine.Points.Add(new Point(x, 120 + 50 * Math.Sin(x * 0.05) * Math.Cos(x * 0.03)));
+                        break;
+                    case 3:
+                        for (int x = 0; x < 800; x++)
+                            waveLine.Points.Add(new Point(x, 120 + 50 * Math.Cos(x * 0.03) * Math.Sin(x * 0.1)));
                         break;
                 }
             }
