@@ -16,4 +16,18 @@
     <Resource Include="radiotelescope.png" />
   </ItemGroup>
 
+<ItemGroup>
+    <Resource Include="Assets\Images\s1.png" />
+    <Resource Include="Assets\Images\s2.png" />
+    <Resource Include="Assets\Images\s3.png" />
+    <Resource Include="Assets\Images\s4.png" />
+    <Resource Include="Assets\Images\s5.png" />
+    <Resource Include="Assets\Images\s6.png" />
+    <Resource Include="Assets\Images\s7.png" />
+    <Resource Include="Assets\Images\s8.png" />
+    <Resource Include="Assets\Images\s9.png" />
+    <Resource Include="Assets\Images\s10.png" />
+
+</ItemGroup>
+
 </Project>

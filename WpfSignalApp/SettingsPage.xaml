@@ -75,7 +75,7 @@
                     <TextBlock
                                FontSize="11"
                                Foreground="{DynamicResource ThemeSubText}"
-                               Margin="0,4,0,0"><Run Text="Версія 1."/><Run Text="1"/><Run Text="0"/><Run Language="uk-ua" Text=" "/><Run Text="BETA"/></TextBlock>
+                               Margin="0,4,0,0"><Run Text="Версія 1."/><Run Text="11"/><Run/><Run Text=" "/><Run Text="BETA"/><LineBreak/><Run/></TextBlock>
                 </StackPanel>
             </Border>
 
