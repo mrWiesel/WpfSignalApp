@@ -35,22 +35,21 @@ namespace WpfSignalApp
 
         private void DrawSignal()
         {
-            // Зображення
+            // Зображення через pack URI — працює незалежно від папки
             try
             {
                 int imageNumber = _random.Next(1, 11);
-                string baseDir = AppDomain.CurrentDomain.BaseDirectory;
-                string imagePath = System.IO.Path.Combine(baseDir, "Images", $"s{imageNumber}.png");
 
-                if (System.IO.File.Exists(imagePath))
-                {
-                    var bitmap = new BitmapImage();
-                    bitmap.BeginInit();
-                    bitmap.UriSource = new Uri(imagePath, UriKind.Absolute);
-                    bitmap.CacheOption = BitmapCacheOption.OnLoad;
-                    bitmap.EndInit();
-                    MyImage.Source = bitmap;
-                }
+                // pack:// URI — зображення вбудоване в .exe після компіляції
+                var uri = new Uri($"pack://application:,,,/Assets/Images/s{imageNumber}.png");
+
+                var bitmap = new BitmapImage();
+                bitmap.BeginInit();
+                bitmap.UriSource = uri;
+                bitmap.CacheOption = BitmapCacheOption.OnLoad;
+                bitmap.EndInit();
+
+                MyImage.Source = bitmap;
             }
             catch (Exception ex)
             {
