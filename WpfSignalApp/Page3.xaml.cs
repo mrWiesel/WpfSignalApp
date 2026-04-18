@@ -8,9 +8,8 @@ namespace WpfSignalApp
 {
     /// <summary>
     /// Code-behind для Page3.
-    /// Малювання Canvas (Polyline) і завантаження зображень не може бути замінено Binding-ом —
-    /// це легітимний виняток, де code-behind виправданий.
-    /// DataContext тут не потрібен, бо немає даних-властивостей для відображення.
+    /// Canvas/Polyline і завантаження зображень — легітимний виняток для code-behind.
+    /// Заголовок оновлюється при зміні мови.
     /// </summary>
     public partial class Page3 : Page
     {
@@ -19,13 +18,27 @@ namespace WpfSignalApp
         public Page3()
         {
             InitializeComponent();
+
             Loaded += (_, _) =>
             {
                 DrawSignal();
                 UpdateWaveColor();
+                UpdateTitle();
             };
-            ThemeManager.ThemeChanged += UpdateWaveColor;
-            Unloaded += (_, _) => ThemeManager.ThemeChanged -= UpdateWaveColor;
+
+            ThemeManager.ThemeChanged          += UpdateWaveColor;
+            LocalizationManager.LanguageChanged += UpdateTitle;
+
+            Unloaded += (_, _) =>
+            {
+                ThemeManager.ThemeChanged          -= UpdateWaveColor;
+                LocalizationManager.LanguageChanged -= UpdateTitle;
+            };
+        }
+
+        private void UpdateTitle()
+        {
+            TbTitle.Text = LocalizationManager["p3.title"];
         }
 
         private void UpdateWaveColor()
@@ -35,12 +48,9 @@ namespace WpfSignalApp
 
         private void DrawSignal()
         {
-            // Зображення через pack URI — працює незалежно від папки
             try
             {
                 int imageNumber = _random.Next(1, 11);
-
-                // pack:// URI — зображення вбудоване в .exe після компіляції
                 var uri = new Uri($"pack://application:,,,/Assets/Images/s{imageNumber}.png");
 
                 var bitmap = new BitmapImage();
@@ -53,10 +63,9 @@ namespace WpfSignalApp
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Помилка завантаження зображення:\n{ex.Message}");
+                MessageBox.Show($"Image load error:\n{ex.Message}");
             }
 
-            // Синусоїда
             try
             {
                 waveLine.Points.Clear();
@@ -78,7 +87,7 @@ namespace WpfSignalApp
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Помилка малювання сигналу:\n{ex.Message}");
+                MessageBox.Show($"Signal draw error:\n{ex.Message}");
             }
         }
     }

@@ -12,8 +12,9 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0"
-                   Text="📊 Результат сигналу"
+        <!-- Локалізований заголовок — оновлюється з code-behind -->
+        <TextBlock x:Name="TbTitle"
+                   Grid.Row="0"
                    FontSize="20" FontWeight="Bold"
                    Foreground="{DynamicResource ThemeText}"
                    Margin="0,0,0,10"/>

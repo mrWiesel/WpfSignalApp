@@ -4,12 +4,17 @@ namespace WpfSignalApp.ViewModels
 {
     /// <summary>
     /// ViewModel для Page2 (обробка сигналу).
+    /// Підтримує локалізацію через LocalizationManager.
     /// </summary>
     public class Page2ViewModel : BaseViewModel
     {
         private double _progress;
         private bool   _isProcessing;
-        private string _statusText = "Готово до обробки";
+        private string _statusText = "";
+
+        // ── Локалізовані computed-властивості ────────────────────────────────────
+        public string PageTitle   => LocalizationManager["p2.title"];
+        public string BtnStartText => LocalizationManager["p2.btn.start"];
 
         public double Progress
         {
@@ -23,12 +28,10 @@ namespace WpfSignalApp.ViewModels
             set
             {
                 SetField(ref _isProcessing, value);
-                // IsEnabled кнопки — інверсія IsProcessing
                 OnPropertyChanged(nameof(CanProcess));
             }
         }
 
-        /// <summary>Binding для IsEnabled кнопки — обчислювана властивість.</summary>
         public bool CanProcess => !_isProcessing;
 
         public string StatusText
@@ -37,11 +40,31 @@ namespace WpfSignalApp.ViewModels
             set => SetField(ref _statusText, value);
         }
 
+        public Page2ViewModel()
+        {
+            LocalizationManager.LanguageChanged += OnLanguageChanged;
+            StatusText = LocalizationManager["p2.status.ready"];
+        }
+
+        private void OnLanguageChanged()
+        {
+            OnPropertyChanged(nameof(PageTitle));
+            OnPropertyChanged(nameof(BtnStartText));
+
+            // Оновити динамічний статус відповідно до поточного стану
+            if (!_isProcessing && _progress == 0)
+                StatusText = LocalizationManager["p2.status.ready"];
+            else if (_isProcessing)
+                StatusText = LocalizationManager["p2.status.processing"];
+            else
+                StatusText = LocalizationManager["p2.status.done"];
+        }
+
         public async Task ProcessAsync()
         {
             IsProcessing = true;
             Progress     = 0;
-            StatusText   = "Обробка...";
+            StatusText   = LocalizationManager["p2.status.processing"];
 
             for (int i = 1; i <= 100; i++)
             {
@@ -49,7 +72,7 @@ namespace WpfSignalApp.ViewModels
                 await Task.Delay(30);
             }
 
-            StatusText   = "Сигнал оброблено успішно!";
+            StatusText   = LocalizationManager["p2.status.done"];
             IsProcessing = false;
         }
     }

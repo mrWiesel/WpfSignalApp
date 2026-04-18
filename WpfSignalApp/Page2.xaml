@@ -12,27 +12,26 @@
                 BorderThickness="1.5" CornerRadius="10"
                 Padding="28,24">
             <StackPanel>
-                <TextBlock Text="⚙ Обробка сигналу"
+                <!-- Локалізований заголовок -->
+                <TextBlock Text="{Binding PageTitle}"
                            FontSize="20" FontWeight="Bold"
                            Foreground="{DynamicResource ThemeText}"
                            HorizontalAlignment="Center" Margin="0,0,0,16"/>
 
-                <!-- ✅ Статус через Binding -->
                 <TextBlock Text="{Binding StatusText}"
                            FontSize="12"
                            Foreground="{DynamicResource ThemeSubText}"
                            HorizontalAlignment="Center"
                            Margin="0,0,0,8"/>
 
-                <!-- ✅ Value через Binding — ProgBar.Value = i більше не потрібен -->
                 <ProgressBar Value="{Binding Progress}"
                              Height="22"
                              Minimum="0" Maximum="100"
                              Margin="0,0,0,20"
                              Foreground="DeepSkyBlue"/>
 
-                <!-- ✅ IsEnabled через Binding до CanProcess -->
-                <Button Content="▶  Start Processing"
+                <!-- Локалізований текст кнопки -->
+                <Button Content="{Binding BtnStartText}"
                         Height="40" FontSize="14"
                         IsEnabled="{Binding CanProcess}"
                         Background="{DynamicResource ThemeBtnBg}"

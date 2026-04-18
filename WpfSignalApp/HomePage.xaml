@@ -3,16 +3,16 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       Background="{DynamicResource ThemePageBg}"
       FontFamily="Segoe UI"
-      Title="Головна">
+      Title="Home">
 
     <Grid>
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
             <Image Source="/radiotelescope.png" Width="160" Height="160" Stretch="Uniform" Margin="0,0,0,20"/>
-            <TextBlock Text="Mine Radiotelescope app"
+            <TextBlock x:Name="TbTitle"
                        FontSize="22" FontWeight="Bold"
                        Foreground="{DynamicResource ThemeText}"
                        HorizontalAlignment="Center" Margin="0,0,0,8"/>
-            <TextBlock Text="Select a section in the navigation bar at the top"
+            <TextBlock x:Name="TbSubtitle"
                        FontSize="13"
                        Foreground="{DynamicResource ThemeSubText}"
                        HorizontalAlignment="Center"/>

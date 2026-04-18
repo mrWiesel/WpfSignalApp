@@ -45,7 +45,8 @@
                 <Border BorderBrush="{DynamicResource ThemeBorder}" BorderThickness="1" CornerRadius="6"
                         Padding="6,8" Margin="0,0,12,0" VerticalAlignment="Center">
                     <StackPanel>
-                        <TextBlock Text="POLARITY  (deg)"
+                        <!-- Локалізований лейбл через Binding -->
+                        <TextBlock Text="{Binding PolLabelText}"
                                    Foreground="{DynamicResource ThemeSubText}"
                                    FontSize="10" HorizontalAlignment="Center" Margin="0,0,0,5"/>
                         <StackPanel Orientation="Horizontal">
@@ -62,10 +63,9 @@
                 </Border>
 
                 <StackPanel VerticalAlignment="Center">
-                    <TextBlock Text="Polarity filter:"
+                    <TextBlock Text="{Binding PolTitleText}"
                                FontSize="16" FontWeight="Bold"
                                Foreground="{DynamicResource ThemeText}" Margin="0,0,0,8"/>
-                    <!-- ✅ Binding замість x:Name + ручного .Text = ... -->
                     <TextBlock Text="{Binding PolTargetText}"  Foreground="{DynamicResource ThemeText}"/>
                     <TextBlock Text="{Binding PolCurrentText}" Foreground="{Binding PolCurrentColor}"/>
                 </StackPanel>
@@ -82,7 +82,7 @@
                 <Border BorderBrush="{DynamicResource ThemeBorder}" BorderThickness="1" CornerRadius="6"
                         Padding="6,8" Margin="0,0,12,0" VerticalAlignment="Center">
                     <StackPanel>
-                        <TextBlock Text="FREQUENCY  (MHz)"
+                        <TextBlock Text="{Binding FreqLabelText}"
                                    Foreground="{DynamicResource ThemeSubText}"
                                    FontSize="10" HorizontalAlignment="Center" Margin="0,0,0,5"/>
                         <StackPanel Orientation="Horizontal">
@@ -99,10 +99,9 @@
                 </Border>
 
                 <StackPanel VerticalAlignment="Center">
-                    <TextBlock Text="Frequency filter:"
+                    <TextBlock Text="{Binding FreqTitleText}"
                                FontSize="16" FontWeight="Bold"
                                Foreground="{DynamicResource ThemeText}" Margin="0,0,0,8"/>
-                    <!-- ✅ Binding -->
                     <TextBlock Text="{Binding FreqTargetText}"  Foreground="{DynamicResource ThemeText}"/>
                     <TextBlock Text="{Binding FreqCurrentText}" Foreground="{Binding FreqCurrentColor}"/>
                 </StackPanel>
@@ -114,11 +113,12 @@
                 Background="{DynamicResource ThemeCard}"
                 BorderBrush="{DynamicResource ThemeBorder}" BorderThickness="2" Margin="2"
                 CornerRadius="6">
-            <!-- ✅ Text і Foreground через Binding -->
             <TextBlock Text="{Binding SignalStatus}"
                        Foreground="{Binding SignalStatusColor}"
-                       FontSize="34" FontWeight="Bold"
-                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                       FontSize="28" FontWeight="Bold"
+                       TextAlignment="Center"
+                       HorizontalAlignment="Center" VerticalAlignment="Center"
+                       TextWrapping="Wrap" Margin="8"/>
         </Border>
 
         <!-- ═══ Stats panel ═══ -->
@@ -127,25 +127,23 @@
                 BorderBrush="{DynamicResource ThemeBorder}" BorderThickness="2" Margin="2"
                 CornerRadius="6">
             <StackPanel Margin="10" VerticalAlignment="Center">
-                <TextBlock Text="Detector status: Active" Foreground="LimeGreen"/>
-                <!-- ✅ Binding -->
-                <TextBlock Text="{Binding ObjectText}"  Foreground="{DynamicResource ThemeText}"/>
-                <TextBlock Text="{Binding QualityText}" Foreground="{DynamicResource ThemeText}"/>
-                <TextBlock Text="Efficiency: 0.000 B\s"       Foreground="Yellow"/>
-                <TextBlock Text="Energy consumption: 100.00%" Foreground="DeepSkyBlue"/>
+                <TextBlock Text="{Binding DetectorText}"  Foreground="LimeGreen"/>
+                <TextBlock Text="{Binding ObjectText}"    Foreground="{DynamicResource ThemeText}"/>
+                <TextBlock Text="{Binding QualityText}"   Foreground="{DynamicResource ThemeText}"/>
+                <TextBlock Text="{Binding EfficiencyText}" Foreground="Yellow"/>
+                <TextBlock Text="{Binding EnergyText}"    Foreground="DeepSkyBlue"/>
             </StackPanel>
         </Border>
 
         <!-- ═══ Action buttons ═══ -->
         <StackPanel Grid.Row="2" Grid.ColumnSpan="2"
                     Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
-            <Button Content="INITIALIZE SCANNER"
-                    Width="160" Height="34" Margin="5"
+            <Button Content="{Binding BtnInitText}"
+                    Width="180" Height="34" Margin="5"
                     Background="{DynamicResource ThemeBtnBg}"
                     Foreground="{DynamicResource ThemeBtnFg}"
                     Click="BtnInit_Click"/>
-            <!-- ✅ IsEnabled через Binding замість BtnCatch.IsEnabled = false -->
-            <Button Content="CATCH SIGNAL"
+            <Button Content="{Binding BtnCatchText}"
                     Width="180" Height="34" Margin="5"
                     Foreground="Black" FontWeight="Bold"
                     IsEnabled="{Binding CatchEnabled}"

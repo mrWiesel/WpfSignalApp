@@ -27,40 +27,41 @@
                     <StackPanel VerticalAlignment="Center">
                         <TextBlock Text="MRtA" FontSize="18" FontWeight="Bold"
                                    Foreground="{DynamicResource ThemeText}"/>
-                        <TextBlock Text="Mine Radiotelescope App"
+                        <!-- Локалізований підзаголовок -->
+                        <TextBlock x:Name="TbAppSubtitle"
                                    FontSize="9" Foreground="{DynamicResource ThemeSubText}"/>
                     </StackPanel>
                 </StackPanel>
 
                 <!-- Settings кнопка праворуч -->
                 <Button DockPanel.Dock="Right"
+                        x:Name="BtnSettings"
                         Content="⚙" Width="36" Height="36"
                         Margin="4,0" Padding="0"
                         FontSize="18"
                         Background="{DynamicResource ThemeBtnBg}"
                         Foreground="{DynamicResource ThemeBtnFg}"
-                        ToolTip="Налаштування"
                         Click="BtnSettings_Click"/>
 
                 <!-- Кнопки навігації -->
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                    <Button Content="🏠 Main"
+                    <Button x:Name="BtnHome"
                             Width="92"  Margin="4,0" Padding="6,5"
                             Background="{DynamicResource ThemeBtnBg}"
                             Foreground="{DynamicResource ThemeBtnFg}"
                             Click="BtnHome_Click"/>
-                    <Button Content="📡 Catch&#xA;signal"
+                    <Button x:Name="BtnPage1"
                             Width="92"  Margin="4,0" Padding="6,5"
                             Height="46"
                             Background="{DynamicResource ThemeBtnBg}"
                             Foreground="{DynamicResource ThemeBtnFg}"
                             Click="BtnPage1_Click"/>
-                    <Button Content="⚙ Processing"
+                    <Button x:Name="BtnPage2"
                             Width="92"  Margin="4,0" Padding="6,5"
                             Background="{DynamicResource ThemeBtnBg}"
                             Foreground="{DynamicResource ThemeBtnFg}"
                             Click="BtnPage2_Click"/>
-                    <Button Content="📊 Results"
+                    <Button x:Name="BtnPage3"
                             Width="92"  Margin="4,0" Padding="6,5"
                             Background="{DynamicResource ThemeBtnBg}"
                             Foreground="{DynamicResource ThemeBtnFg}"

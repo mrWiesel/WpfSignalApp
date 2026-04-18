@@ -6,7 +6,6 @@ namespace WpfSignalApp
 {
     /// <summary>
     /// Code-behind для SettingsPage — лише DataContext і виклики VM методів.
-    /// Жодного прямого доступу до контролів.
     /// </summary>
     public partial class SettingsPage : Page
     {
@@ -15,10 +14,12 @@ namespace WpfSignalApp
         public SettingsPage()
         {
             InitializeComponent();
-            DataContext = _vm;  // ✅ DataContext встановлено
+            DataContext = _vm;
         }
 
-        private void BtnDark_Click(object sender, RoutedEventArgs e)  => _vm.SetDark();
-        private void BtnLight_Click(object sender, RoutedEventArgs e) => _vm.SetLight();
+        private void BtnDark_Click(object sender, RoutedEventArgs e)       => _vm.SetDark();
+        private void BtnLight_Click(object sender, RoutedEventArgs e)      => _vm.SetLight();
+        private void BtnEnglish_Click(object sender, RoutedEventArgs e)    => _vm.SetEnglish();
+        private void BtnUkrainian_Click(object sender, RoutedEventArgs e)  => _vm.SetUkrainian();
     }
 }

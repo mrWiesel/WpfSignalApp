@@ -1,26 +1,27 @@
 <Page x:Class="WpfSignalApp.SettingsPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      Title="Налаштування"
+      Title="Settings"
       Background="{DynamicResource ThemePageBg}"
       FontFamily="Segoe UI">
 
     <Grid>
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="360">
 
-            <TextBlock Text="⚙ Налаштування"
+            <!-- Заголовок -->
+            <TextBlock Text="{Binding SettingsTitleText}"
                        FontSize="24" FontWeight="Bold"
                        Foreground="{DynamicResource ThemeText}"
                        HorizontalAlignment="Center"
-                       Margin="0,0,0,32"/>
+                       Margin="0,0,0,24"/>
 
-            <!-- Theme card -->
+            <!-- ══ Theme card ══════════════════════════════════════════════════ -->
             <Border Background="{DynamicResource ThemeCard}"
                     BorderBrush="{DynamicResource ThemeBorder}"
                     BorderThickness="1.5" CornerRadius="10"
-                    Padding="20,18" Margin="0,0,0,16">
+                    Padding="20,18" Margin="0,0,0,14">
                 <StackPanel>
-                    <TextBlock Text="Тема інтерфейсу"
+                    <TextBlock Text="{Binding ThemeSectionText}"
                                FontSize="14" FontWeight="SemiBold"
                                Foreground="{DynamicResource ThemeText}"
                                Margin="0,0,0,14"/>
@@ -31,9 +32,8 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
 
-                        <!-- ✅ Background через Binding — BtnDark.Background = ... більше не потрібен -->
                         <Button Grid.Column="0"
-                                Content="🌙  Темна"
+                                Content="{Binding DarkBtnText}"
                                 Height="42" Margin="0,0,6,0"
                                 FontSize="13"
                                 Background="{Binding DarkBtnBackground}"
@@ -41,7 +41,7 @@
                                 Click="BtnDark_Click"/>
 
                         <Button Grid.Column="1"
-                                Content="☀  Світла"
+                                Content="{Binding LightBtnText}"
                                 Height="42" Margin="6,0,0,0"
                                 FontSize="13"
                                 Background="{Binding LightBtnBackground}"
@@ -49,7 +49,6 @@
                                 Click="BtnLight_Click"/>
                     </Grid>
 
-                    <!-- ✅ Text через Binding -->
                     <TextBlock Text="{Binding CurrentThemeText}"
                                FontSize="11"
                                Foreground="{DynamicResource ThemeSubText}"
@@ -58,24 +57,70 @@
                 </StackPanel>
             </Border>
 
-            <!-- Info card -->
+            <!-- ══ Language card ══════════════════════════════════════════════ -->
+            <Border Background="{DynamicResource ThemeCard}"
+                    BorderBrush="{DynamicResource ThemeBorder}"
+                    BorderThickness="1.5" CornerRadius="10"
+                    Padding="20,18" Margin="0,0,0,14">
+                <StackPanel>
+                    <TextBlock Text="{Binding LangSectionText}"
+                               FontSize="14" FontWeight="SemiBold"
+                               Foreground="{DynamicResource ThemeText}"
+                               Margin="0,0,0,14"/>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!-- English -->
+                        <Button Grid.Column="0"
+                                Height="42" Margin="0,0,6,0"
+                                FontSize="13"
+                                Background="{Binding EnBtnBackground}"
+                                Foreground="{DynamicResource ThemeBtnFg}"
+                                Click="BtnEnglish_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="🇬🇧  " FontSize="16" VerticalAlignment="Center"/>
+                                <TextBlock Text="English"  VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </Button>
+
+                        <!-- Українська -->
+                        <Button Grid.Column="1"
+                                Height="42" Margin="6,0,0,0"
+                                FontSize="13"
+                                Background="{Binding UkBtnBackground}"
+                                Foreground="{DynamicResource ThemeBtnFg}"
+                                Click="BtnUkrainian_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="🇺🇦  " FontSize="16" VerticalAlignment="Center"/>
+                                <TextBlock Text="Українська" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </Button>
+                    </Grid>
+                </StackPanel>
+            </Border>
+
+            <!-- ══ About card ══════════════════════════════════════════════════ -->
             <Border Background="{DynamicResource ThemeCard}"
                     BorderBrush="{DynamicResource ThemeBorder}"
                     BorderThickness="1.5" CornerRadius="10"
                     Padding="20,18">
                 <StackPanel>
-                    <TextBlock Text="Про програму"
+                    <TextBlock Text="{Binding AboutSectionText}"
                                FontSize="14" FontWeight="SemiBold"
                                Foreground="{DynamicResource ThemeText}"
                                Margin="0,0,0,8"/>
-                    <TextBlock Text="Mine Radiotelescope app"
+                    <TextBlock Text="{Binding AppNameText}"
                                FontSize="12"
                                Foreground="{DynamicResource ThemeSubText}"
                                TextWrapping="Wrap"/>
-                    <TextBlock
+                    <TextBlock Text="{Binding VersionText}"
                                FontSize="11"
                                Foreground="{DynamicResource ThemeSubText}"
-                               Margin="0,4,0,0"><Run Text="Версія 1."/><Run Text="11"/><Run/><Run Text=" "/><Run Text="BETA"/><LineBreak/><Run/></TextBlock>
+                               Margin="0,4,0,0"/>
                 </StackPanel>
             </Border>
 

@@ -8,7 +8,26 @@ namespace WpfSignalApp
         {
             InitializeComponent();
             ThemeManager.Initialize();
+
+            // Підписуємось на зміну мови для оновлення навігаційних кнопок
+            LocalizationManager.LanguageChanged += UpdateNavTexts;
+            UpdateNavTexts();
+
             MainFrame.Navigate(new HomePage());
+        }
+
+        /// <summary>
+        /// Оновлює текст кнопок навігаційної панелі та tooltip Settings.
+        /// Викликається при старті і при зміні мови.
+        /// </summary>
+        private void UpdateNavTexts()
+        {
+            TbAppSubtitle.Text       = LocalizationManager["nav.appSubtitle"];
+            BtnHome.Content          = LocalizationManager["nav.home"];
+            BtnPage1.Content         = LocalizationManager["nav.catch"];
+            BtnPage2.Content         = LocalizationManager["nav.processing"];
+            BtnPage3.Content         = LocalizationManager["nav.results"];
+            BtnSettings.ToolTip      = LocalizationManager["nav.settings.tip"];
         }
 
         private void BtnHome_Click(object sender, RoutedEventArgs e)     => MainFrame.Navigate(new HomePage());
