@@ -10,16 +10,16 @@ namespace WpfSignalApp
     /// </summary>
     public static class LocalizationManager
     {
-        // ── Доступні мови ────────────────────────────────────────────────────────
+        // Доступні мови
         public static readonly string[] AvailableLanguages = { "en", "uk" };
 
         private static string _currentLanguage = "en";
         public static string CurrentLanguage => _currentLanguage;
 
-        // ── Подія зміни мови ─────────────────────────────────────────────────────
+        // Подія зміни мови
         public static event Action? LanguageChanged;
 
-        // ── Словники ─────────────────────────────────────────────────────────────
+        // Словники
         private static readonly Dictionary<string, Dictionary<string, string>> _strings = new()
         {
             // Англійська локалізація
@@ -160,7 +160,7 @@ namespace WpfSignalApp
             }
         }
 
-        // ── Зміна мови ────────────────────────────────────────────────────────────
+        // Зміна мови
         public static void SetLanguage(string lang)
         {
             if (!Array.Exists(AvailableLanguages, l => l == lang)) return;
@@ -169,7 +169,6 @@ namespace WpfSignalApp
             LanguageChanged?.Invoke();
         }
 
-        // ── Хелпер: отримати рядок з форматуванням ───────────────────────────────
         public static string Format(string key, params object[] args)
             => string.Format(LocalizationManager[key], args);
     }
