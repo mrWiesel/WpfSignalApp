@@ -79,7 +79,7 @@ namespace WpfSignalApp
                 ["settings.lang"] = "Language",
                 ["settings.about"] = "About",
                 ["settings.appname"] = "Mine Radiotelescope app",
-                ["settings.version"] = "Version 1.1.0 BETA",
+                ["settings.version"] = "Version 1.2.0",
             },
 
             // Українська локалізація

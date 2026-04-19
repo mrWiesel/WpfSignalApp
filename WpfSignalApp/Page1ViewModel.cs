@@ -169,7 +169,7 @@ namespace WpfSignalApp.ViewModels
             _initialized      = false;
         }
 
-        // ── Приватна логіка ──────────────────────────────────────────────────────
+        // Приватна логіка
         private static Brush DefaultTextBrush()
             => ThemeManager.IsDark ? Brushes.White : Brushes.Black;
 

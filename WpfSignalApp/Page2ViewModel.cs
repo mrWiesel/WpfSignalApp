@@ -12,7 +12,7 @@ namespace WpfSignalApp.ViewModels
         private bool _isProcessing;
         private string _statusText = "";
 
-        // ── Локалізовані computed-властивості ────────────────────────────────────
+        // Локалізовані computed-властивості
         public string PageTitle => LocalizationManager.Get("p2.title");
         public string BtnStartText => LocalizationManager.Get("p2.btn.start");
 

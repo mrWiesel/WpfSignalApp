@@ -9,7 +9,7 @@ namespace WpfSignalApp.ViewModels
     /// </summary>
     public class SettingsViewModel : BaseViewModel
     {
-        // ── Тема ─────────────────────────────────────────────────────────────────
+        // Тема
         private string _currentThemeText = "";
         private Brush _darkBtnBg = Brushes.Gray;
         private Brush _lightBtnBg = Brushes.Gray;
@@ -32,7 +32,7 @@ namespace WpfSignalApp.ViewModels
             set => SetField(ref _lightBtnBg, value);
         }
 
-        // ── Мова ─────────────────────────────────────────────────────────────────
+        // Мова
         private Brush _enBtnBg = Brushes.Gray;
         private Brush _ukBtnBg = Brushes.Gray;
 
@@ -48,7 +48,7 @@ namespace WpfSignalApp.ViewModels
             set => SetField(ref _ukBtnBg, value);
         }
 
-        // ── Локалізовані лейбли ───────────────────────────────────────────────────
+        // Локалізовані лейбли
         public string SettingsTitleText => LocalizationManager.Get("settings.title");
         public string ThemeSectionText => LocalizationManager.Get("settings.theme");
         public string DarkBtnText => LocalizationManager.Get("settings.dark");
@@ -58,7 +58,7 @@ namespace WpfSignalApp.ViewModels
         public string AppNameText => LocalizationManager.Get("settings.appname");
         public string VersionText => LocalizationManager.Get("settings.version");
 
-        // ── Конструктор ──────────────────────────────────────────────────────────
+        // Конструктор
         public SettingsViewModel()
         {
             ThemeManager.ThemeChanged += Refresh;
@@ -66,15 +66,15 @@ namespace WpfSignalApp.ViewModels
             Refresh();
         }
 
-        // ── Команди теми ─────────────────────────────────────────────────────────
+        // Команди теми
         public void SetDark() => ThemeManager.SetDark();
         public void SetLight() => ThemeManager.SetLight();
 
-        // ── Команди мови ─────────────────────────────────────────────────────────
+        // Команди мови
         public void SetEnglish() => LocalizationManager.SetLanguage("en");
         public void SetUkrainian() => LocalizationManager.SetLanguage("uk");
 
-        // ── Оновлення ────────────────────────────────────────────────────────────
+        // Оновлення
         private void Refresh()
         {
             bool dark = ThemeManager.IsDark;
