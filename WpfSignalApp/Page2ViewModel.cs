@@ -9,12 +9,12 @@ namespace WpfSignalApp.ViewModels
     public class Page2ViewModel : BaseViewModel
     {
         private double _progress;
-        private bool   _isProcessing;
+        private bool _isProcessing;
         private string _statusText = "";
 
         // ── Локалізовані computed-властивості ────────────────────────────────────
-        public string PageTitle   => LocalizationManager["p2.title"];
-        public string BtnStartText => LocalizationManager["p2.btn.start"];
+        public string PageTitle => LocalizationManager.Get("p2.title");
+        public string BtnStartText => LocalizationManager.Get("p2.btn.start");
 
         public double Progress
         {
@@ -43,7 +43,7 @@ namespace WpfSignalApp.ViewModels
         public Page2ViewModel()
         {
             LocalizationManager.LanguageChanged += OnLanguageChanged;
-            StatusText = LocalizationManager["p2.status.ready"];
+            StatusText = LocalizationManager.Get("p2.status.ready");
         }
 
         private void OnLanguageChanged()
@@ -53,18 +53,18 @@ namespace WpfSignalApp.ViewModels
 
             // Оновити динамічний статус відповідно до поточного стану
             if (!_isProcessing && _progress == 0)
-                StatusText = LocalizationManager["p2.status.ready"];
+                StatusText = LocalizationManager.Get("p2.status.ready");
             else if (_isProcessing)
-                StatusText = LocalizationManager["p2.status.processing"];
+                StatusText = LocalizationManager.Get("p2.status.processing");
             else
-                StatusText = LocalizationManager["p2.status.done"];
+                StatusText = LocalizationManager.Get("p2.status.done");
         }
 
         public async Task ProcessAsync()
         {
             IsProcessing = true;
-            Progress     = 0;
-            StatusText   = LocalizationManager["p2.status.processing"];
+            Progress = 0;
+            StatusText = LocalizationManager.Get("p2.status.processing");
 
             for (int i = 1; i <= 100; i++)
             {
@@ -72,7 +72,7 @@ namespace WpfSignalApp.ViewModels
                 await Task.Delay(30);
             }
 
-            StatusText   = LocalizationManager["p2.status.done"];
+            StatusText = LocalizationManager.Get("p2.status.done");
             IsProcessing = false;
         }
     }

@@ -22,19 +22,19 @@ namespace WpfSignalApp
         /// </summary>
         private void UpdateNavTexts()
         {
-            TbAppSubtitle.Text       = LocalizationManager["nav.appSubtitle"];
-            BtnHome.Content          = LocalizationManager["nav.home"];
-            BtnPage1.Content         = LocalizationManager["nav.catch"];
-            BtnPage2.Content         = LocalizationManager["nav.processing"];
-            BtnPage3.Content         = LocalizationManager["nav.results"];
-            BtnSettings.ToolTip      = LocalizationManager["nav.settings.tip"];
+            TbAppSubtitle.Text = LocalizationManager.Get("nav.appSubtitle");
+            BtnHome.Content = LocalizationManager.Get("nav.home");
+            BtnPage1.Content = LocalizationManager.Get("nav.catch");
+            BtnPage2.Content = LocalizationManager.Get("nav.processing");
+            BtnPage3.Content = LocalizationManager.Get("nav.results");
+            BtnSettings.ToolTip = LocalizationManager.Get("nav.settings.tip");
         }
 
-        private void BtnHome_Click(object sender, RoutedEventArgs e)     => MainFrame.Navigate(new HomePage());
-        private void BtnPage1_Click(object sender, RoutedEventArgs e)    => MainFrame.Navigate(new Page1());
-        private void BtnPage2_Click(object sender, RoutedEventArgs e)    => MainFrame.Navigate(new Page2());
-        private void BtnPage3_Click(object sender, RoutedEventArgs e)    => MainFrame.Navigate(new Page3());
-        private void BtnPage4_Click(object sender, RoutedEventArgs e)    => MainFrame.Navigate(new Page4());
+        private void BtnHome_Click(object sender, RoutedEventArgs e) => MainFrame.Navigate(new HomePage());
+        private void BtnPage1_Click(object sender, RoutedEventArgs e) => MainFrame.Navigate(new Page1());
+        private void BtnPage2_Click(object sender, RoutedEventArgs e) => MainFrame.Navigate(new Page2());
+        private void BtnPage3_Click(object sender, RoutedEventArgs e) => MainFrame.Navigate(new Page3());
+        private void BtnPage4_Click(object sender, RoutedEventArgs e) => MainFrame.Navigate(new Page4());
         private void BtnSettings_Click(object sender, RoutedEventArgs e) => MainFrame.Navigate(new SettingsPage());
     }
 }

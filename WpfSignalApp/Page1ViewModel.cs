@@ -3,41 +3,35 @@ using System.Windows.Media;
 
 namespace WpfSignalApp.ViewModels
 {
-    /// <summary>
-    /// ViewModel для Page1 (сканер сигналу).
-    /// Підтримує локалізацію через LocalizationManager.
-    /// </summary>
     public class Page1ViewModel : BaseViewModel
     {
-        // ── Константи ───────────────────────────────────────────────────────────
+        // Константи
         private const int Threshold = 10;
         private const int MaxPol    = 360;
         private const int MaxFreq   = 1000;
 
-        // ── Приватні поля ────────────────────────────────────────────────────────
+        //Приватні поля
         private int  _targetPolarity;
         private int  _targetFrequency;
         private int  _currentPol;
         private int  _currentFreq;
         private bool _initialized;
 
-        // Внутрішній стан статусу (не рядок, а enum-like)
         private SignalState _state = SignalState.NoSignal;
-
         private enum SignalState { NoSignal, Scanning, Lock, Caught }
 
-        // ── Публічні властивості (Binding у XAML) ───────────────────────────────
+        // Computed лейбли (оновлюються через OnPropertyChanged)
+        public string PolLabelText   => LocalizationManager.Get("p1.polarity.label");
+        public string PolTitleText   => LocalizationManager.Get("p1.polarity.title");
+        public string FreqLabelText  => LocalizationManager.Get("p1.frequency.label");
+        public string FreqTitleText  => LocalizationManager.Get("p1.frequency.title");
+        public string DetectorText   => LocalizationManager.Get("p1.detector");
+        public string EfficiencyText => LocalizationManager.Get("p1.efficiency");
+        public string EnergyText     => LocalizationManager.Get("p1.energy");
+        public string BtnInitText    => LocalizationManager.Get("p1.btn.init");
+        public string BtnCatchText   => LocalizationManager.Get("p1.btn.catch");
 
-        public string PolLabelText    => L["p1.polarity.label"];
-        public string PolTitleText    => L["p1.polarity.title"];
-        public string FreqLabelText   => L["p1.frequency.label"];
-        public string FreqTitleText   => L["p1.frequency.title"];
-        public string DetectorText    => L["p1.detector"];
-        public string EfficiencyText  => L["p1.efficiency"];
-        public string EnergyText      => L["p1.energy"];
-        public string BtnInitText     => L["p1.btn.init"];
-        public string BtnCatchText    => L["p1.btn.catch"];
-
+        // Поля зі сповіщенням
         private string _polTargetText  = "";
         private string _polCurrentText = "";
         private string _freqTargetText  = "";
@@ -116,24 +110,19 @@ namespace WpfSignalApp.ViewModels
             set => SetField(ref _catchEnabled, value);
         }
 
-        // ── Хелпер ───────────────────────────────────────────────────────────────
-        private static LocalizationManager L => null!; // trick — використовуємо індексатор статичного класу
-
-        // ── Конструктор ──────────────────────────────────────────────────────────
-
+        // Конструктор
         public Page1ViewModel()
         {
             _polCurrentColor  = DefaultTextBrush();
             _freqCurrentColor = DefaultTextBrush();
 
-            ThemeManager.ThemeChanged          += OnThemeChanged;
+            ThemeManager.ThemeChanged           += OnThemeChanged;
             LocalizationManager.LanguageChanged += OnLanguageChanged;
 
             RefreshAllTexts();
         }
 
-        // ── Команди ──────────────────────────────────────────────────────────────
-
+        //Команди
         public void Initialize()
         {
             var rng = new Random();
@@ -145,7 +134,7 @@ namespace WpfSignalApp.ViewModels
             _state           = SignalState.Scanning;
 
             CatchEnabled = false;
-            ObjectText   = LocalizationManager["p1.object.unknown"];
+            ObjectText   = LocalizationManager.Get("p1.object.unknown");
 
             RefreshAllTexts();
         }
@@ -173,7 +162,7 @@ namespace WpfSignalApp.ViewModels
             });
 
             _state            = SignalState.Caught;
-            SignalStatus      = LocalizationManager["p1.status.caught"];
+            SignalStatus      = LocalizationManager.Get("p1.status.caught");
             SignalStatusColor = Brushes.LimeGreen;
             QualityText       = LocalizationManager.Format("p1.quality", 100);
             CatchEnabled      = false;
@@ -181,7 +170,6 @@ namespace WpfSignalApp.ViewModels
         }
 
         // ── Приватна логіка ──────────────────────────────────────────────────────
-
         private static Brush DefaultTextBrush()
             => ThemeManager.IsDark ? Brushes.White : Brushes.Black;
 
@@ -194,12 +182,9 @@ namespace WpfSignalApp.ViewModels
             FreqCurrentColor = freqClose ? Brushes.LimeGreen : DefaultTextBrush();
         }
 
-        /// <summary>
-        /// Викликається при зміні мови — перебудовує всі локалізовані рядки.
-        /// </summary>
         private void OnLanguageChanged()
         {
-            // Сповістити UI про зміну computed-рядків (назви кнопок, лейбли)
+            // Computed лейбли — просто сповіщаємо UI
             OnPropertyChanged(nameof(PolLabelText));
             OnPropertyChanged(nameof(PolTitleText));
             OnPropertyChanged(nameof(FreqLabelText));
@@ -210,52 +195,47 @@ namespace WpfSignalApp.ViewModels
             OnPropertyChanged(nameof(BtnInitText));
             OnPropertyChanged(nameof(BtnCatchText));
 
+            // Динамічні рядки — перебудовуємо
             RefreshAllTexts();
         }
 
-        /// <summary>
-        /// Оновлює всі динамічні рядки згідно з поточним станом і мовою.
-        /// </summary>
         private void RefreshAllTexts()
         {
             // Target рядки
-            if (_initialized)
-            {
-                PolTargetText  = BuildTargetPol(_targetPolarity);
-                FreqTargetText = BuildTargetFreq(_targetFrequency);
-            }
-            else
-            {
-                PolTargetText  = LocalizationManager["p1.polarity.target"];
-                FreqTargetText = LocalizationManager["p1.freq.target"];
-            }
+            PolTargetText  = _initialized
+                ? BuildTargetPol(_targetPolarity)
+                : LocalizationManager.Get("p1.polarity.target");
+
+            FreqTargetText = _initialized
+                ? BuildTargetFreq(_targetFrequency)
+                : LocalizationManager.Get("p1.freq.target");
 
             // Current рядки
             PolCurrentText  = _initialized
                 ? BuildCurrentPol(_currentPol)
-                : LocalizationManager["p1.polarity.current"];
+                : LocalizationManager.Get("p1.polarity.current");
 
             FreqCurrentText = _initialized
                 ? BuildCurrentFreq(_currentFreq)
-                : LocalizationManager["p1.freq.current"];
+                : LocalizationManager.Get("p1.freq.current");
 
             // Якість
-            if (!_initialized && _state != SignalState.Caught)
-                QualityText = LocalizationManager.Format("p1.quality", 0);
-            else if (_initialized)
+            if (_initialized)
                 UpdateQuality();
+            else if (_state != SignalState.Caught)
+                QualityText = LocalizationManager.Format("p1.quality", 0);
 
-            // Об'єкт
+            // Об'єкт (тільки в початковому стані)
             if (!_initialized && _state == SignalState.NoSignal)
-                ObjectText = LocalizationManager["p1.object.none"];
+                ObjectText = LocalizationManager.Get("p1.object.none");
 
-            // Статус
+            // Статус і колір
             SignalStatus = _state switch
             {
-                SignalState.NoSignal => LocalizationManager["p1.status.nosignal"],
-                SignalState.Scanning => LocalizationManager["p1.status.scanning"],
-                SignalState.Lock     => LocalizationManager["p1.status.lock"],
-                SignalState.Caught   => LocalizationManager["p1.status.caught"],
+                SignalState.NoSignal => LocalizationManager.Get("p1.status.nosignal"),
+                SignalState.Scanning => LocalizationManager.Get("p1.status.scanning"),
+                SignalState.Lock     => LocalizationManager.Get("p1.status.lock"),
+                SignalState.Caught   => LocalizationManager.Get("p1.status.caught"),
                 _                   => ""
             };
 
@@ -263,7 +243,7 @@ namespace WpfSignalApp.ViewModels
             {
                 SignalState.NoSignal => Brushes.Red,
                 SignalState.Scanning => Brushes.Yellow,
-                SignalState.Lock     => Brushes.Cyan,
+                SignalState.Lock     => Brushes.Green,
                 SignalState.Caught   => Brushes.LimeGreen,
                 _                   => Brushes.Gray
             };
@@ -286,14 +266,14 @@ namespace WpfSignalApp.ViewModels
             {
                 _state            = SignalState.Lock;
                 CatchEnabled      = true;
-                SignalStatus      = LocalizationManager["p1.status.lock"];
-                SignalStatusColor = Brushes.Cyan;
+                SignalStatus      = LocalizationManager.Get("p1.status.lock");
+                SignalStatusColor = Brushes.Green;
             }
             else if (_initialized)
             {
                 _state            = SignalState.Scanning;
                 CatchEnabled      = false;
-                SignalStatus      = LocalizationManager["p1.status.scanning"];
+                SignalStatus      = LocalizationManager.Get("p1.status.scanning");
                 SignalStatusColor = Brushes.Yellow;
             }
         }
@@ -306,45 +286,24 @@ namespace WpfSignalApp.ViewModels
             QualityText  = LocalizationManager.Format("p1.quality", quality);
         }
 
-        // ── Локалізовані рядки значень ───────────────────────────────────────────
-
-        // Будуємо рядки вручну, щоб одиниці виміру теж локалізувались.
-        // В англійській: "Target: 180 deg" / "Current: 90 deg"
-        // В українській: "Ціль:   180 град" / "Поточна: 90 град"
+        // Будівники локалізованих рядків
         private static string BuildTargetPol(int val)
-        {
-            string template = LocalizationManager["p1.polarity.target"]; // "Target:  --- deg" або "Ціль:    --- grad"
-            // замінюємо "---" на число
-            return template.Replace("---", val.ToString());
-        }
+            => LocalizationManager.Get("p1.polarity.target").Replace("---", val.ToString());
 
         private static string BuildTargetFreq(int val)
-        {
-            string template = LocalizationManager["p1.freq.target"];
-            return template.Replace("---", val.ToString());
-        }
+            => LocalizationManager.Get("p1.freq.target").Replace("---", val.ToString());
 
         private static string BuildCurrentPol(int val)
-        {
-            // "Current: 0 deg" → "Current: {val} deg"
-            string template = LocalizationManager["p1.polarity.current"];
-            return ReplaceNumber(template, val);
-        }
+            => ReplaceNumber(LocalizationManager.Get("p1.polarity.current"), val);
 
         private static string BuildCurrentFreq(int val)
-        {
-            string template = LocalizationManager["p1.freq.current"];
-            return ReplaceNumber(template, val);
-        }
+            => ReplaceNumber(LocalizationManager.Get("p1.freq.current"), val);
 
         /// <summary>
-        /// Замінює перше число (або 0) у рядку на нове значення.
-        /// Це дозволяє зберегти локалізований формат рядка.
+        /// Замінює перше число у локалізованому шаблоні ("Current: 0 deg" → "Current: 42 deg").
         /// </summary>
         private static string ReplaceNumber(string template, int newVal)
         {
-            // Шаблон: "Current: 0 deg" або "Поточна: 0 МГц"
-            // Знаходимо перше число і замінюємо його
             int start = -1, end = -1;
             for (int i = 0; i < template.Length; i++)
             {

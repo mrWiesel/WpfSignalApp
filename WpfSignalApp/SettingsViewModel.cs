@@ -11,8 +11,8 @@ namespace WpfSignalApp.ViewModels
     {
         // ── Тема ─────────────────────────────────────────────────────────────────
         private string _currentThemeText = "";
-        private Brush  _darkBtnBg  = Brushes.Gray;
-        private Brush  _lightBtnBg = Brushes.Gray;
+        private Brush _darkBtnBg = Brushes.Gray;
+        private Brush _lightBtnBg = Brushes.Gray;
 
         public string CurrentThemeText
         {
@@ -33,8 +33,8 @@ namespace WpfSignalApp.ViewModels
         }
 
         // ── Мова ─────────────────────────────────────────────────────────────────
-        private Brush _enBtnBg  = Brushes.Gray;
-        private Brush _ukBtnBg  = Brushes.Gray;
+        private Brush _enBtnBg = Brushes.Gray;
+        private Brush _ukBtnBg = Brushes.Gray;
 
         public Brush EnBtnBackground
         {
@@ -49,29 +49,29 @@ namespace WpfSignalApp.ViewModels
         }
 
         // ── Локалізовані лейбли ───────────────────────────────────────────────────
-        public string SettingsTitleText  => LocalizationManager["settings.title"];
-        public string ThemeSectionText   => LocalizationManager["settings.theme"];
-        public string DarkBtnText        => LocalizationManager["settings.dark"];
-        public string LightBtnText       => LocalizationManager["settings.light"];
-        public string LangSectionText    => LocalizationManager["settings.lang"];
-        public string AboutSectionText   => LocalizationManager["settings.about"];
-        public string AppNameText        => LocalizationManager["settings.appname"];
-        public string VersionText        => LocalizationManager["settings.version"];
+        public string SettingsTitleText => LocalizationManager.Get("settings.title");
+        public string ThemeSectionText => LocalizationManager.Get("settings.theme");
+        public string DarkBtnText => LocalizationManager.Get("settings.dark");
+        public string LightBtnText => LocalizationManager.Get("settings.light");
+        public string LangSectionText => LocalizationManager.Get("settings.lang");
+        public string AboutSectionText => LocalizationManager.Get("settings.about");
+        public string AppNameText => LocalizationManager.Get("settings.appname");
+        public string VersionText => LocalizationManager.Get("settings.version");
 
         // ── Конструктор ──────────────────────────────────────────────────────────
         public SettingsViewModel()
         {
-            ThemeManager.ThemeChanged          += Refresh;
+            ThemeManager.ThemeChanged += Refresh;
             LocalizationManager.LanguageChanged += OnLanguageChanged;
             Refresh();
         }
 
         // ── Команди теми ─────────────────────────────────────────────────────────
-        public void SetDark()  => ThemeManager.SetDark();
+        public void SetDark() => ThemeManager.SetDark();
         public void SetLight() => ThemeManager.SetLight();
 
         // ── Команди мови ─────────────────────────────────────────────────────────
-        public void SetEnglish()   => LocalizationManager.SetLanguage("en");
+        public void SetEnglish() => LocalizationManager.SetLanguage("en");
         public void SetUkrainian() => LocalizationManager.SetLanguage("uk");
 
         // ── Оновлення ────────────────────────────────────────────────────────────
@@ -81,7 +81,7 @@ namespace WpfSignalApp.ViewModels
 
             var defaultBg = Application.Current.Resources["ThemeBtnBg"] as Brush ?? Brushes.Gray;
 
-            DarkBtnBackground  = dark
+            DarkBtnBackground = dark
                 ? new SolidColorBrush(Color.FromRgb(70, 70, 120))
                 : defaultBg;
 
@@ -90,8 +90,8 @@ namespace WpfSignalApp.ViewModels
                 : defaultBg;
 
             CurrentThemeText = dark
-                ? LocalizationManager["settings.theme.dark"]
-                : LocalizationManager["settings.theme.light"];
+                ? LocalizationManager.Get("settings.theme.dark")
+                : LocalizationManager.Get("settings.theme.light");
 
             RefreshLangButtons();
         }
@@ -124,8 +124,8 @@ namespace WpfSignalApp.ViewModels
 
             // Тема-текст теж локалізований
             CurrentThemeText = ThemeManager.IsDark
-                ? LocalizationManager["settings.theme.dark"]
-                : LocalizationManager["settings.theme.light"];
+                ? LocalizationManager.Get("settings.theme.dark")
+                : LocalizationManager.Get("settings.theme.light");
 
             RefreshLangButtons();
         }

@@ -127,11 +127,11 @@
                 BorderBrush="{DynamicResource ThemeBorder}" BorderThickness="2" Margin="2"
                 CornerRadius="6">
             <StackPanel Margin="10" VerticalAlignment="Center">
-                <TextBlock Text="{Binding DetectorText}"  Foreground="LimeGreen"/>
+                <TextBlock Text="{Binding DetectorText}"  Foreground="{DynamicResource ThemeText}"/>
                 <TextBlock Text="{Binding ObjectText}"    Foreground="{DynamicResource ThemeText}"/>
                 <TextBlock Text="{Binding QualityText}"   Foreground="{DynamicResource ThemeText}"/>
-                <TextBlock Text="{Binding EfficiencyText}" Foreground="Yellow"/>
-                <TextBlock Text="{Binding EnergyText}"    Foreground="DeepSkyBlue"/>
+                <TextBlock Text="{Binding EfficiencyText}" Foreground="{DynamicResource ThemeText}"/>
+                <TextBlock Text="{Binding EnergyText}"    Foreground="{DynamicResource ThemeText}"/>
             </StackPanel>
         </Border>
 

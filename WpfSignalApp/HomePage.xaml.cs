@@ -14,8 +14,8 @@ namespace WpfSignalApp
 
         private void UpdateTexts()
         {
-            TbTitle.Text    = LocalizationManager["home.title"];
-            TbSubtitle.Text = LocalizationManager["home.subtitle"];
+            TbTitle.Text = LocalizationManager.Get("home.title");
+            TbSubtitle.Text = LocalizationManager.Get("home.subtitle");
         }
     }
 }

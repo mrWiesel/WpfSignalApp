@@ -26,19 +26,19 @@ namespace WpfSignalApp
                 UpdateTitle();
             };
 
-            ThemeManager.ThemeChanged          += UpdateWaveColor;
+            ThemeManager.ThemeChanged += UpdateWaveColor;
             LocalizationManager.LanguageChanged += UpdateTitle;
 
             Unloaded += (_, _) =>
             {
-                ThemeManager.ThemeChanged          -= UpdateWaveColor;
+                ThemeManager.ThemeChanged -= UpdateWaveColor;
                 LocalizationManager.LanguageChanged -= UpdateTitle;
             };
         }
 
         private void UpdateTitle()
         {
-            TbTitle.Text = LocalizationManager["p3.title"];
+            TbTitle.Text = LocalizationManager.Get("p3.title");
         }
 
         private void UpdateWaveColor()
