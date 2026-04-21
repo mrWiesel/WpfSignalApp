@@ -186,7 +186,7 @@ namespace WpfSignalApp
                 ["settings.lang"] = "Мова",
                 ["settings.about"] = "Про програму",
                 ["settings.appname"] = "Mine Radiotelescope app",
-                ["settings.version"] = "Версія 1.1.1 BETA",
+                ["settings.version"] = "Версія 1.2.0",
 
                 // AuthPage
                 ["auth.title"] = "Необхідна авторизація",
