@@ -127,7 +127,7 @@
                              FontSize="12"
                              FontFamily="Consolas"
                              Background="Transparent"
-                             Foreground="#00CC88"
+                             Foreground="{DynamicResource ThemeText}"
                              BorderThickness="0"
                              VerticalScrollBarVisibility="Auto"
                              Visibility="Collapsed"
