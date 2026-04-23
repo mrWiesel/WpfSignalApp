@@ -3,11 +3,6 @@ using System.Collections.Generic;
 
 namespace WpfSignalApp
 {
-    /// <summary>
-    /// Менеджер локалізації.
-    /// Зберігає поточну мову і надає доступ до рядків через статичний метод Get().
-    /// При зміні мови стріляє подія LanguageChanged.
-    /// </summary>
     public static class LocalizationManager
     {
         // Доступні мови
